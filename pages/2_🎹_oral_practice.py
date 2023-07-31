@@ -26,6 +26,12 @@ st.set_page_config(
 if "spoken_list" not in st.session_state:
     st.session_state["spoken_list"] = []
 
+# 发音评估得分
+if "assessment_score" not in st.session_state:
+    st.session_state["assessment_score"] = [
+        {"pronunciation": 0, "accuracy": 0, "fluency": 0, "completeness": 0}
+    ]
+
 # 侧面菜单注释
 st.sidebar.subheader(st.session_state.native_language.oral_practice_label)
 
@@ -58,14 +64,6 @@ st.sidebar.selectbox(
 voice_file = voice_path / "{}.wav".format(st.session_state["voice_name"])
 st.sidebar.audio(str(voice_file))
 
-# 指定录制音频时长
-max_duration = st.sidebar.slider(
-    st.session_state.native_language.voice_duration_label,
-    min_value=3,
-    max_value=30,
-    value=15,
-)  # Duration of recording
-
 
 @st.cache_data(show_spinner="Speech synthesis from Azure AI...")
 def tts_mav_file(text):
@@ -77,9 +75,6 @@ def tts_mav_file(text):
     )
 
 
-@st.cache_data(
-    show_spinner="Performs one-shot pronunciation assessment asynchronously with input from microphone with Azure AI..."
-)
 def pafm(text):
     return pronunciation_assessment_from_microphone(
         text,
@@ -107,39 +102,23 @@ def gen_badge(mispronunciation, omission, insertion):
 
 
 def practice(i, text):
-    col1, col2, col3, col4, _ = st.columns([1, 1, 1, 1, 8])
-    s_col1, _ = st.columns([4, 8])
-    with col1:
+    btn_col1, btn_col2, _ = st.columns([1, 1, 10])
+    with btn_col1:
         listen_btn = st.button("👂聆听", key="listen_{}".format(i), help="点击聆听文本")
-    with col2:
-        speak_btn = st.button(
-            "🔊朗读", key="speak_{}".format(i), help="点击跟读文本，👈左侧菜单滑块可设定录制时长"
-        )
-        # if speak_btn:
-        #     wav = record_audio(max_duration)
-        #     if len(st.session_state["spoken_list"]) == i + 1:
-        #         # 替代
-        #         st.session_state["spoken_list"][i] = wav
-        #     else:
-        #         st.session_state["spoken_list"].append(wav)
-    with col3:
-        replay_btn = st.button("🎧回放", key="replay_{}".format(i), help="回放跟读音频")
-    with col4:
+
+    with btn_col2:
         evaluation_btn = st.button("🎼评估", key="evaluation_{}".format(i), help="语音评估")
 
     st.markdown(text)
 
-    with s_col1:
-        if listen_btn:
+    if listen_btn:
+        s_col1, _ = st.columns([4, 8])
+        with s_col1:
             st.audio(tts_mav_file(text))
-        if replay_btn:
-            if len(st.session_state["spoken_list"]) >= i + 1:
-                st.audio(st.session_state["spoken_list"][i])
-            else:
-                st.warning("录制音频后才能回放", icon="⚠️")
 
     st.divider()
     container = st.container()
+
     if evaluation_btn:
         result = pafm(text)
         # st.write(result)
@@ -208,13 +187,13 @@ def practice(i, text):
     st.divider()
 
 
-# 临时测试
-if "scenario" not in st.session_state:
-    st.session_state[
-        "scenario"
-    ] = """For users who have already developed prompts and flows using the open-source library, such as LangChain, prompt flow provides a seamless integration pathway. 
-    This compatibility enables you to lift and shift your existing assets to prompt flow, facilitating Prompt Engineering, evaluation, and collaboration efforts to prepare your flow for production. 
-    This smooth transition ensures that your previous work is not lost and can be further enhanced within the prompt flow environment for evaluation, optimization and production."""
+# # 临时测试
+# if "scenario" not in st.session_state:
+#     st.session_state[
+#         "scenario"
+#     ] = """For users who have already developed prompts and flows using the open-source library, such as LangChain, prompt flow provides a seamless integration pathway.
+#     This compatibility enables you to lift and shift your existing assets to prompt flow, facilitating Prompt Engineering, evaluation, and collaboration efforts to prepare your flow for production.
+#     This smooth transition ensures that your previous work is not lost and can be further enhanced within the prompt flow environment for evaluation, optimization and production."""
 
 if st.session_state["scenario"]:
     sentences = [l for l in st.session_state["scenario"].splitlines() if l]

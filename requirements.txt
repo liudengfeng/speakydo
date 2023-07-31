@@ -1,0 +1,3 @@
+zhon
+jieba
+azure-cognitiveservices-speech

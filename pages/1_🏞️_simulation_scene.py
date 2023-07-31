@@ -16,7 +16,7 @@ st.set_page_config(
 
 
 # 侧面菜单注释
-st.sidebar.subheader(st.session_state["native_language"].simulation_scene_label)
+st.sidebar.subheader(st.session_state.native_language.simulation_scene_label)
 
 
 with st.expander("🎗️ 如何与机器人聊天"):

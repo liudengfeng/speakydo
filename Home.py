@@ -15,7 +15,7 @@ if "target_language" not in st.session_state:
     st.session_state["target_language"] = LAN_MAPS["en-US"]
 
 st.set_page_config(
-    page_title=st.session_state["native_language"].home_page_title,
+    page_title=st.session_state.native_language.home_page_title,
     page_icon="🎼",
     layout="centered",
     initial_sidebar_state="expanded",
@@ -54,7 +54,7 @@ with t2:
         ## DF Studio
         {}
         """.format(
-            st.session_state["native_language"].app_introduce
+            st.session_state.native_language.app_introduce
         ),
         unsafe_allow_html=True,
     )
@@ -69,26 +69,26 @@ def on_native_language_changed():
 
 with col1:
     native_language = st.selectbox(
-        st.session_state["native_language"].native_language_label,
+        st.session_state.native_language.native_language_label,
         options=options,
         format_func=format_func,
         # on_change=on_native_language_changed,
-        index=options.index(st.session_state["native_language"].language_key),
+        index=options.index(st.session_state.native_language.language_key),
         help=LAN_MAPS["en-US"].native_language_label,
     )
-    st.session_state["native_language"] = LAN_MAPS[native_language]
+    st.session_state.native_language = LAN_MAPS[native_language]
 
 
 with col2:
     target_language = st.selectbox(
-        st.session_state["native_language"].target_language_label,
+        st.session_state.native_language.target_language_label,
         options=options,
         format_func=format_func,
-        index=options.index(st.session_state["target_language"].language_key),
+        index=options.index(st.session_state.target_language.language_key),
         # key="selected_target_language",
         help=LAN_MAPS["en-US"].target_language_label,
     )
-    st.session_state["target_language"] = LAN_MAPS[target_language]
+    st.session_state.target_language = LAN_MAPS[target_language]
 
 
 st.divider()
@@ -117,4 +117,4 @@ st.markdown(f"To view the project, please visit [github]({REPO_URL}).")
 
 
 # 侧面菜单注释
-st.sidebar.subheader(st.session_state["native_language"].home_page_title)
+st.sidebar.subheader(st.session_state.native_language.home_page_title)

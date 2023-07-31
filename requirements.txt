@@ -7,5 +7,7 @@ azure-cognitiveservices-speech
 streamlit
 st-annotated-text
 torch
+accelerate
+bitsandbytes
 transformers
 langchain

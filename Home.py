@@ -23,8 +23,8 @@ st.set_page_config(
 
 
 # 口语文本
-# if "scenario" not in st.session_state:
-#     st.session_state["scenario"] = ""
+if "oral_scenario" not in st.session_state:
+    st.session_state["oral_scenario"] = ""
 
 # 练习口语历史记录
 # if "spoken_list" not in st.session_state:

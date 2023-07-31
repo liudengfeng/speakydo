@@ -1,3 +1,11 @@
+requests
+python-dotenv
+pymongo
 zhon
 jieba
 azure-cognitiveservices-speech
+streamlit
+st-annotated-text
+torch
+transformers
+langchain

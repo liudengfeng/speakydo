@@ -126,7 +126,7 @@ def practice(i, text):
             if result["warning"]:
                 st.warning(result["warning"], icon="⚠️")
             elif result["error"]:
-                st.error(result["error"], icon="🚨")
+                st.error(result["error"], icon="❌")
             else:
                 info = result["final_words"]["counter_info"]
                 components.html(
@@ -188,15 +188,15 @@ def practice(i, text):
 
 
 # # 临时测试
-# if "scenario" not in st.session_state:
+# if "oral_scenario" not in st.session_state:
 #     st.session_state[
-#         "scenario"
+#         "oral_scenario"
 #     ] = """For users who have already developed prompts and flows using the open-source library, such as LangChain, prompt flow provides a seamless integration pathway.
 #     This compatibility enables you to lift and shift your existing assets to prompt flow, facilitating Prompt Engineering, evaluation, and collaboration efforts to prepare your flow for production.
 #     This smooth transition ensures that your previous work is not lost and can be further enhanced within the prompt flow environment for evaluation, optimization and production."""
 
-if st.session_state["scenario"]:
-    sentences = [l for l in st.session_state["scenario"].splitlines() if l]
+if st.session_state["oral_scenario"]:
+    sentences = [l for l in st.session_state["oral_scenario"].splitlines() if l]
     # 按行分割，去除空行
     for i, line in enumerate(sentences):
         practice(i, line)

@@ -19,7 +19,7 @@ st.set_page_config(
 st.sidebar.subheader(st.session_state.native_language.simulation_scene_label)
 
 
-with st.expander("🎗️ 如何与机器人聊天"):
+with st.expander("🚨 如何与机器人聊天"):
     st.markdown(
         """
     - 多练习。要尽量多与机器人对话,通过大量练习提高流畅度和习惯

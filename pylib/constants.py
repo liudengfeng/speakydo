@@ -53,6 +53,10 @@ class Locale:
     selectbox_voice_name_label: str
     voice_duration_label: str
     chatbot_label: str
+    reset_chatbot_label: str
+    reset_chatbot_help_label: str
+    langchain_label: str
+    cpp_model_selectbox_label: str
 
 
 zh_cn = Locale(
@@ -69,6 +73,10 @@ zh_cn = Locale(
     selectbox_voice_name_label="请选择语音",
     voice_duration_label="录制音频时长(秒)",
     chatbot_label="聊天机器人",
+    reset_chatbot_label="重置会话",
+    reset_chatbot_help_label="清除会话历史，开始一个新的话题",
+    langchain_label="Langchain App",
+    cpp_model_selectbox_label="请选择模型",
 )
 
 en_us = Locale(
@@ -85,6 +93,10 @@ en_us = Locale(
     selectbox_voice_name_label="Please select a voice",
     voice_duration_label="Recording audio duration (seconds)",
     chatbot_label="chatbot",
+    reset_chatbot_label="reset session",
+    reset_chatbot_help_label="Clear conversation history, start a new thread",
+    langchain_label="Langchain App",
+    cpp_model_selectbox_label="Please select a model",
 )
 
 ja_jp = Locale(
@@ -101,6 +113,10 @@ ja_jp = Locale(
     selectbox_voice_name_label="音声を選択してください",
     voice_duration_label="音声の録音時間 (秒)",
     chatbot_label="チャットボット",
+    reset_chatbot_label="セッションをリセットする",
+    reset_chatbot_help_label="会話履歴をクリアし、新しいスレッドを開始します",
+    langchain_label="Langchain App",
+    cpp_model_selectbox_label="モデルを選択してください",
 )
 
 fr_fr = Locale(
@@ -117,6 +133,10 @@ fr_fr = Locale(
     selectbox_voice_name_label="Veuillez sélectionner une voix",
     voice_duration_label="Durée d'enregistrement audio (secondes)",
     chatbot_label="chatbot",
+    reset_chatbot_label="réinitialiser la session",
+    reset_chatbot_help_label="Effacer l'historique des conversations, démarrer un nouveau fil",
+    langchain_label="Langchain App",
+    cpp_model_selectbox_label="Veuillez sélectionner un modèle",
 )
 
 LAN_MAPS = {

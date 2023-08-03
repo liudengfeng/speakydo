@@ -1,10 +1,14 @@
-from pylib.meta_llama2 import *
+from langchain.prompts import ChatPromptTemplate
 
 
-model, tokenizer = get_model_tokenizer()
-# print(model.get_memory_footprint() / 1024**3, "GB")
-text = "Hamburg is in which country?\n"
+prompt_template = ChatPromptTemplate.from_role_strings(
+    [
+        (
+            "system",
+            "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature. If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information. Your name is {bot_name}.",
+        ),
+        ("human", "{user_input}"),
+    ]
+)
 
-res = chat_stream_completion(model, tokenizer, text, [], None)
-for r in res:
-    print(r)
+prompt_template.messages[1].prompt.input_variables

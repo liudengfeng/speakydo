@@ -17,6 +17,31 @@ st.set_page_config(
 
 # 侧面菜单注释
 st.sidebar.subheader(st.session_state.native_language.simulation_scene_label)
+selected_dialogue_topic = st.sidebar.selectbox(
+    st.session_state.native_language.selectbox_dialogue_topic_label,
+    list(st.session_state.native_language.dialogue_topic.keys()),
+)
+st.sidebar.info(
+    st.session_state.native_language.dialogue_topic_help[selected_dialogue_topic]
+)
+
+
+st.markdown(
+    """\
+## {}
+{}
+""".format(
+        st.session_state.native_language.simulation_scene_label,
+        st.session_state.native_language.dialogue_topic_tip,
+    )
+)
+
+dialogue = st.text_area(
+    "Situational dialogue",
+    value="要尽量多与机器人对话,通过大量练习提高流畅度和习惯",
+    label_visibility="hidden",
+    max_chars=600,
+)
 
 
 with st.expander("🚨 如何与机器人聊天"):

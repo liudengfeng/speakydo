@@ -1,13 +1,17 @@
 requests
 python-dotenv
 pymongo
+bs4
 zhon
 jieba
 azure-cognitiveservices-speech
 streamlit
 st-annotated-text
 torch
+llama-cpp-python
 accelerate
 bitsandbytes
 transformers
+sentence-transformers
 langchain
+chromadb

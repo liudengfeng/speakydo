@@ -5,6 +5,7 @@ from pylib.meta_llama2 import (
     Message,
     DEFAULT_SYSTEM_PROMPT,
 )
+import time
 
 
 @st.cache_resource
@@ -66,6 +67,7 @@ for message in st.session_state.chat_messages:
 
 
 if prompt := st.chat_input("What is up?"):
+    start = time.time()
     st.session_state.chat_messages.append(Message(role="user", content=prompt))
     with st.chat_message("user", avatar="🧑‍🎓"):
         st.markdown(prompt)
@@ -86,6 +88,7 @@ if prompt := st.chat_input("What is up?"):
             full_response += response
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
+        print(f"duration = {time.time()- start:.2f}s")
         st.session_state.chat_messages.append(
             Message(role="assistant", content=full_response),
         )

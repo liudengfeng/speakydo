@@ -42,23 +42,34 @@ TTS_VOICES = {
 class Locale:
     language_key: str
     language_label: str
+    language_level: List[str]
     app_introduce: str
+    model_arg_label: str
     home_page_title: str
+    memorize_word_page_title: str
     native_language_label: str
     target_language_label: str
     feedback_label: str
     contact_me_label: str
     simulation_scene_label: str
+    role_1_gender_label: str
+    role_2_gender_label: str
     oral_practice_label: str
     selectbox_voice_name_label: str
     voice_duration_label: str
     chatbot_label: str
+    default_chat_input: str
     reset_chatbot_label: str
     reset_chatbot_help_label: str
     langchain_label: str
     cpp_model_selectbox_label: str
     dialogue_topic_tip: str
+    selectbox_dialogue_language_level: str
     selectbox_dialogue_topic_label: str
+    selectbox_dialogue_word_books_label: str
+    presentation_interval_label: str
+    word_number_label: str
+    names: Mapping[str, str]
     dialogue_topic_help: Mapping[str, str]
     dialogue_topic = {
         "Daily life topics": "scenes related to daily life, such as shopping, dining, family life, etc.",
@@ -76,26 +87,40 @@ class Locale:
 zh_cn = Locale(
     language_key="zh-CN",
     language_label="简体中文",
+    language_level=["初级", "中级", "高级"],
     app_introduce="""**沉浸式口语练习应用程序**""",
+    model_arg_label="LLM 模型参数",
     home_page_title="主页",
+    memorize_word_page_title="背单词",
     native_language_label="请选择您的母语",
     target_language_label="要学习的目标语言",
     feedback_label="反馈",
     contact_me_label="联系我们",
     simulation_scene_label="模拟场景",
+    role_1_gender_label="角色 1 性别",
+    role_2_gender_label="角色 2 性别",
     oral_practice_label="口语练习",
     selectbox_voice_name_label="请选择语音",
     voice_duration_label="录制音频时长(秒)",
     chatbot_label="聊天机器人",
+    default_chat_input="在此输入指令",
     reset_chatbot_label="重置会话",
     reset_chatbot_help_label="清除会话历史，开始一个新的话题",
     langchain_label="Langchain App",
     cpp_model_selectbox_label="请选择模型",
+    names={
+        "男性": ["浩然", "子轩", "皓轩", "梓浩", "浩宇", "宇轩", "亦辰", "宇辰", "宇航", "子墨"],
+        "女性": ["一诺", "依诺", "欣怡", "梓涵", "诗涵", "欣妍", "可欣", "语汐", "雨桐", "梦瑶"],
+    },
     dialogue_topic_tip="""\
-- 👈选择话题
-- 👇修改、确认系统指示
-- 👇修改、确认练习场景
+- 🎗️ 为提高语言运用能力，加深语言理解，增强学习兴趣，使用模拟场景提高语言学习的效率和效果。
+- 👈 选择目标语言水平
+- 👈 选择主题
+- 👈 选择系统自动生成的细分子话题
+- 👇 修改、确认系统指示
+- 👇 修改、确认练习场景
     """,
+    selectbox_dialogue_language_level="目标语言水平",
     selectbox_dialogue_topic_label="请选择要生成的对话主题",
     dialogue_topic_help={
         "Daily life topics": "日常生活话题：与日常生活相关的场景，如购物、餐饮、家庭生活等。",
@@ -108,31 +133,67 @@ zh_cn = Locale(
         "Debating thinking topics": "辩论思维话题：一些带有辩论性质的话题可以提高学生的逻辑思维能力。",
         "Hypothetical Topics": "假设主题：一些假设主题。 例如，'如果我是一名中学数学老师'。",
     },
+    selectbox_dialogue_word_books_label="词库清单",
+    presentation_interval_label="演示间隔时间",
+    word_number_label="计划学习单词数量",
 )
 
 en_us = Locale(
     language_key="en-US",
     language_label="English",
+    language_level=["Elementary", "Intermediate", "Advanced"],
     app_introduce="""**The Immersive Spoken Language Practice App**""",
+    model_arg_label="LLM Model parameters",
     home_page_title="Home",
+    memorize_word_page_title="memorize words",
     native_language_label="Please select your native language",
     target_language_label="target language you want to learn",
     feedback_label="feedback",
     contact_me_label="Contact us",
     simulation_scene_label="simulation scene",
+    role_1_gender_label="Role 1 Gender",
+    role_2_gender_label="Role 2 Gender",
     oral_practice_label="oral practice",
     selectbox_voice_name_label="Please select a voice",
     voice_duration_label="Recording audio duration (seconds)",
     chatbot_label="chatbot",
+    default_chat_input="Enter a prompt here",
     reset_chatbot_label="reset session",
     reset_chatbot_help_label="Clear conversation history, start a new thread",
     langchain_label="Langchain App",
     cpp_model_selectbox_label="Please select a model",
+    names={
+        "male": [
+            "Michael",
+            "David",
+            "John",
+            "Ethan",
+            "Daniel",
+            "Elijah",
+            "Alexander",
+            "Matthew",
+            "Joseph",
+            "William",
+        ],
+        "female": [
+            "Ava",
+            "Olivia",
+            "Emma",
+            "Sophia",
+            "Isabella",
+            "Mia",
+            "Abigail",
+            "Evelyn",
+            "Charlotte",
+            "Emily",
+        ],
+    },
     dialogue_topic_tip="""\
 - 👈choose a topic
 - 👇Modify and confirm system instructions
 - 👇Modify and confirm the practice scene
     """,
+    selectbox_dialogue_language_level="target language level",
     selectbox_dialogue_topic_label="Please select a conversation topic to generate",
     dialogue_topic_help={
         "Daily life topics": "Daily life topics: scenes related to daily life, such as shopping, dining, family life, etc.",
@@ -145,22 +206,31 @@ en_us = Locale(
         "Debating thinking topics": "Debating thinking topics: Some topics with a debating nature can improve students' logical thinking ability.",
         "Hypothetical Topics": "Hypothetical Topics: Some hypothetical topics. For example, 'If I were a middle school math teacher'.",
     },
+    selectbox_dialogue_word_books_label="Vocabulary list",
+    presentation_interval_label="Presentation interval",
+    word_number_label="Number of words planned to be learned",
 )
 
 ja_jp = Locale(
     language_key="ja-JP",
     language_label="日本語",
+    language_level=["初級", "中級", "上級"],
     app_introduce="""**没入型の話し言葉練習アプリ**""",
+    model_arg_label="LLM モデルパラメータ",
     home_page_title="主页",
+    memorize_word_page_title="単語を覚える",
     native_language_label="あなたの母国語を選択してください",
     target_language_label="学びたい言語",
     feedback_label="フィードバック",
     contact_me_label="お問い合わせ",
     simulation_scene_label="シミュレーションシーン",
+    role_1_gender_label="役割 1 性別",
+    role_2_gender_label="役割 2 性別",
     oral_practice_label="口頭練習",
     selectbox_voice_name_label="音声を選択してください",
     voice_duration_label="音声の録音時間 (秒)",
     chatbot_label="チャットボット",
+    default_chat_input="ここにプロンプトを入力してください",
     reset_chatbot_label="セッションをリセットする",
     reset_chatbot_help_label="会話履歴をクリアし、新しいスレッドを開始します",
     langchain_label="Langchain App",
@@ -170,6 +240,11 @@ ja_jp = Locale(
 - 👇システム指示の変更と確認
 - 👇練習風景を修正・確認する
     """,
+    names={
+        "男": ["翔太", "悠仁", "蓮", "湊", "楓", "大翔", "颯太", "悠真", "湊翔", "優斗"],
+        "女": ["凛", "結衣", "紬", "杏", "結衣", "葵", "凜", "結菜", "心愛", "結愛"],
+    },
+    selectbox_dialogue_language_level="ターゲット言語レベル",
     selectbox_dialogue_topic_label="生成する会話トピックを選択してください",
     dialogue_topic_help={
         "Daily life topics": "日常生活のトピック: 買い物、食事、家族生活など、日常生活に関連するシーン。",
@@ -182,31 +257,67 @@ ja_jp = Locale(
         "Debating thinking topics": "ディベート思考のトピック: ディベートの性質を持つ一部のトピックは、生徒の論理的思考能力を向上させることができます。",
         "Hypothetical Topics": "仮説のトピック: いくつかの仮説のトピック。たとえば、「私が中学校の数学の教師だったら」。",
     },
+    selectbox_dialogue_word_books_label="語彙リスト",
+    presentation_interval_label="発表間隔",
+    word_number_label="学習予定の単語数",
 )
 
 fr_fr = Locale(
     language_key="fr-FR",
     language_label="Français",
+    language_level=["Élémentaire", "Intermédiaire", "Avancé"],
     app_introduce="""**L'application immersive de pratique de la langue parlée**""",
+    model_arg_label="LLM Paramètres du modèle",
     home_page_title="主页",
+    memorize_word_page_title="mémoriser des mots",
     native_language_label="Veuillez sélectionner votre langue maternelle",
     target_language_label="langue cible que vous souhaitez apprendre",
     feedback_label="retour",
     contact_me_label="Contactez-nous",
     simulation_scene_label="scène de simulation",
+    role_1_gender_label="Rôle 1 Genre",
+    role_2_gender_label="Rôle 2 Genre",
     oral_practice_label="pratique orale",
     selectbox_voice_name_label="Veuillez sélectionner une voix",
     voice_duration_label="Durée d'enregistrement audio (secondes)",
     chatbot_label="chatbot",
+    default_chat_input="Entrez une invite ici",
     reset_chatbot_label="réinitialiser la session",
     reset_chatbot_help_label="Effacer l'historique des conversations, démarrer un nouveau fil",
     langchain_label="Langchain App",
     cpp_model_selectbox_label="Veuillez sélectionner un modèle",
+    names={
+        "mâle": [
+            "Gabriel",
+            "Léo",
+            "Raphaël",
+            "Louis",
+            "Arthur",
+            "Noah",
+            "Malo",
+            "Mae",
+            "Elio",
+            "Nino",
+        ],
+        "femelle": [
+            "Jade",
+            "Louise",
+            "Emma",
+            "Ambre",
+            "Alice",
+            "Alba",
+            "Ava",
+            "Alma",
+            "Iris",
+            "Romy",
+        ],
+    },
     dialogue_topic_tip="""\
 - 👈choisir un sujet
 - 👇Modifier et confirmer les instructions du système
 - 👇Modifier et confirmer la scène d'entraînement
     """,
+    selectbox_dialogue_language_level="niveau de langue cible",
     selectbox_dialogue_topic_label="Veuillez sélectionner un sujet de conversation à générer",
     dialogue_topic_help={
         "Daily life topics": "Sujets de la vie quotidienne : scènes liées à la vie quotidienne, telles que les achats, les repas, la vie de famille, etc.",
@@ -219,6 +330,9 @@ fr_fr = Locale(
         "Debating thinking topics": "Débat sur des sujets de réflexion : certains sujets de nature débat peuvent améliorer la capacité de réflexion logique des élèves.",
         "Hypothetical Topics": "Sujets hypothétiques : certains sujets hypothétiques. Par exemple, ‘Si j'étais un professeur de mathématiques au collège'.",
     },
+    selectbox_dialogue_word_books_label="Liste de vocabulaire",
+    presentation_interval_label="Intervalle de présentation",
+    word_number_label="Nombre de mots prévus à apprendre",
 )
 
 LAN_MAPS = {

@@ -68,6 +68,7 @@ class Locale:
     selectbox_dialogue_topic_label: str
     selectbox_dialogue_word_books_label: str
     presentation_interval_label: str
+    voice_toggle_label: str
     word_number_label: str
     names: Mapping[str, str]
     dialogue_topic_help: Mapping[str, str]
@@ -136,6 +137,7 @@ zh_cn = Locale(
     selectbox_dialogue_word_books_label="词库清单",
     presentation_interval_label="演示间隔时间",
     word_number_label="计划学习单词数量",
+    voice_toggle_label="打开/关闭 朗读单词",
 )
 
 en_us = Locale(
@@ -209,6 +211,7 @@ en_us = Locale(
     selectbox_dialogue_word_books_label="Vocabulary list",
     presentation_interval_label="Presentation interval",
     word_number_label="Number of words planned to be learned",
+    voice_toggle_label="Turn on/off reading words aloud",
 )
 
 ja_jp = Locale(
@@ -260,6 +263,7 @@ ja_jp = Locale(
     selectbox_dialogue_word_books_label="語彙リスト",
     presentation_interval_label="発表間隔",
     word_number_label="学習予定の単語数",
+    voice_toggle_label="単語の読み上げをオン/オフにします",
 )
 
 fr_fr = Locale(
@@ -333,6 +337,7 @@ fr_fr = Locale(
     selectbox_dialogue_word_books_label="Liste de vocabulaire",
     presentation_interval_label="Intervalle de présentation",
     word_number_label="Nombre de mots prévus à apprendre",
+    voice_toggle_label="Activer/désactiver la lecture des mots à voix haute",
 )
 
 LAN_MAPS = {

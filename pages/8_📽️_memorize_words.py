@@ -1,5 +1,5 @@
 """具体来说，可以采用以下间隔设置策略：
-
+⏳
 **第一次复习：**20-30 分钟后
 **第二次复习：**2-3 天后
 **第三次复习：**7-10 天后
@@ -15,6 +15,14 @@ import random
 
 
 WORDS_PATH = (Path(__file__).parent.parent / "resource/words").absolute()
+
+
+def fname2word(stem: str):
+    word = stem.replace("_", " ")
+    word = word.replace("-", "/")
+    word = word.replace("问号", "?")
+    return word
+
 
 st.set_page_config(
     page_title=st.session_state.native_language.memorize_word_page_title,
@@ -53,8 +61,13 @@ intervals = st.sidebar.slider(
     help="新单词间隔应该设置在 5-10 秒左右",
 )
 
+voice_on = st.sidebar.toggle(
+    st.session_state.native_language.voice_toggle_label, value=True
+)
+
 to_learn = []
 
+# TODO:根据用户学习记录调整【掌握程度、学习间隔】
 with open(selected_file, "r") as f:
     # 读取 JSON 文件
     words = json.load(f)

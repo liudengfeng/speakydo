@@ -56,6 +56,7 @@ def gen_word_card(header, word_dict):
 
 
 pygame.init()
+pygame.mixer.init()
 
 st.set_page_config(
     page_title=st.session_state.native_language.memorize_word_page_title,

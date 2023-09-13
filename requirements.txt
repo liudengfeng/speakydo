@@ -1,6 +1,7 @@
 requests
 gTTS
 python-dotenv
+pygame
 pymongo
 bs4
 zhon

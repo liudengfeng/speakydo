@@ -125,7 +125,7 @@ def speech_recognize_once_from_mic(speech_key, service_region, language="zh-cn")
 
 
 def speech_recognize_once_from_file(
-    wav_file, speech_key, service_region, language="en-US"
+    wav_file, speech_key, service_region, language="en-us"
 ):
     """performs one-shot speech recognition with input from an audio file"""
     # <SpeechRecognitionWithFile>
@@ -148,7 +148,7 @@ def speech_recognize_once_from_file(
 
 
 def speech_recognize_once_compressed_input(
-    mp3_file, speech_key, service_region, language="en-US"
+    mp3_file, speech_key, service_region, language="en-us"
 ):
     """performs one-shot speech recognition with compressed input from an audio file [mp3]"""
 
@@ -254,7 +254,7 @@ def gen_word_tags(final_words, accuracy_upper=85):
     }
 
 
-def recognizer_normalizated(reference_text, result, language):
+def recognizer_normalizated(reference_text, result, language: str):
     output = {
         "warning": "",
         "error": "",
@@ -285,7 +285,7 @@ def recognizer_normalizated(reference_text, result, language):
 
         # we need to convert the reference text to lower case, and split to words, then remove the punctuations.
         recognized_words = pronunciation_result.words
-        if language == "zh-CN":
+        if language.lower() == "zh-cn":
             # Use jieba package to split words for Chinese
             import jieba
             import zhon.hanzi
@@ -334,7 +334,7 @@ def recognizer_normalizated(reference_text, result, language):
 
 
 def pronunciation_assessment_from_microphone(
-    reference_text, speech_key, service_region, language="en-US"
+    reference_text, speech_key, service_region, language="en-us"
 ):
     """Performs one-shot pronunciation assessment asynchronously with input from microphone.
     See more information at https://aka.ms/csspeech/pa"""
@@ -381,7 +381,7 @@ def pronunciation_assessment_from_microphone(
 
 
 def pronunciation_assessment_continuous_from_file(
-    audio_filename, reference_text, language, speech_key, service_region
+    audio_filename, reference_text, language: str, speech_key, service_region
 ):
     """Performs continuous pronunciation assessment asynchronously with input from an audio file.
     See more information at https://aka.ms/csspeech/pa"""
@@ -391,7 +391,7 @@ def pronunciation_assessment_continuous_from_file(
 
     # Creates an instance of a speech config with specified subscription key and service region.
     # Replace with your own subscription key and service region (e.g., "westus").
-    # Note: The sample is for en-US language.
+    # Note: The sample is for en-us language.
     speech_config = speechsdk.SpeechConfig(
         subscription=speech_key, region=service_region
     )
@@ -414,7 +414,7 @@ def pronunciation_assessment_continuous_from_file(
     )
 
     # Creates a speech recognizer using a file as audio input.
-    # language = "en-US"
+    # language = "en-us"
     speech_recognizer = speechsdk.SpeechRecognizer(
         speech_config=speech_config, language=language, audio_config=audio_config
     )
@@ -474,7 +474,7 @@ def pronunciation_assessment_continuous_from_file(
     speech_recognizer.stop_continuous_recognition()
 
     # we need to convert the reference text to lower case, and split to words, then remove the punctuations.
-    if language == "zh-CN":
+    if language.lower() == "zh-cn":
         # Use jieba package to split words for Chinese
         import jieba
         import zhon.hanzi

@@ -9,10 +9,10 @@ logo_path: Path = current_dir / "static/dfstudio.png"
 
 
 if "native_language" not in st.session_state:
-    st.session_state["native_language"] = LAN_MAPS["zh-CN"]
+    st.session_state["native_language"] = LAN_MAPS["zh-cn"]
 
 if "target_language" not in st.session_state:
-    st.session_state["target_language"] = LAN_MAPS["en-US"]
+    st.session_state["target_language"] = LAN_MAPS["en-us"]
 
 st.set_page_config(
     page_title=st.session_state.native_language.home_page_title,
@@ -74,7 +74,7 @@ with col1:
         format_func=format_func,
         # on_change=on_native_language_changed,
         index=options.index(st.session_state.native_language.language_key),
-        help=LAN_MAPS["en-US"].native_language_label,
+        help=LAN_MAPS["en-us"].native_language_label,
     )
     st.session_state.native_language = LAN_MAPS[native_language]
 
@@ -86,7 +86,7 @@ with col2:
         format_func=format_func,
         index=options.index(st.session_state.target_language.language_key),
         # key="selected_target_language",
-        help=LAN_MAPS["en-US"].target_language_label,
+        help=LAN_MAPS["en-us"].target_language_label,
     )
     st.session_state.target_language = LAN_MAPS[target_language]
 

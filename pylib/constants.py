@@ -9,31 +9,31 @@ STUDIO_URL: str = "https://speakydo.streamlit.app/"
 
 # name, view name, description
 TTS_VOICES = {
-    "en-US": [
-        ("en-US-ChristopherNeural", "Christopher 【male】", ""),
-        ("en-US-RogerNeural", "Roger 【male】", ""),
-        ("en-US-JennyNeural", "Jenny 【female】", ""),
-        ("en-US-AnaNeural", "Ana 【female】", ""),
+    "en-us": [
+        ("en-us-ChristopherNeural", "Christopher 【male】", ""),
+        ("en-us-RogerNeural", "Roger 【male】", ""),
+        ("en-us-JennyNeural", "Jenny 【female】", ""),
+        ("en-us-AnaNeural", "Ana 【female】", ""),
     ],
-    "ja-JP": [
-        ("ja-JP-DaichiNeural", "Daichi 【男】", ""),
-        ("ja-JP-NaokiNeural", "Naoki 【男】", ""),
-        ("ja-JP-NanamiNeural", "Nanami 【女】", ""),
-        ("ja-JP-AoiNeural", "Aoi 【女】", ""),
+    "ja-jp": [
+        ("ja-jp-DaichiNeural", "Daichi 【男】", ""),
+        ("ja-jp-NaokiNeural", "Naoki 【男】", ""),
+        ("ja-jp-NanamiNeural", "Nanami 【女】", ""),
+        ("ja-jp-AoiNeural", "Aoi 【女】", ""),
     ],
-    "zh-CN": [
-        ("zh-CN-YunxiNeural", "云希 【男】", "活泼、阳光的声音，具有丰富的情感，可用于许多对话场景。"),
-        ("zh-CN-YunyeNeural", "云野 【男】", "成熟、放松的声音，具有多种情感，适合音频书籍。"),
-        ("zh-CN-YunyangNeural", "云扬 【男】", "专业、流利的声音，具有多种场景风格。"),
-        ("zh-CN-XiaoxiaoNeural", "晓晓 【女】", "活泼、温暖的声音，具有多种场景风格和情感。"),
-        ("zh-CN-XiaoyouNeural", "晓悠 【女】", "天使般的清晰声音，可以应用于许多儿童相关场景。"),
-        ("zh-CN-XiaomoNeural", "晓墨 【女】", "清晰、放松的声音，具有丰富的角色扮演和情感，适合音频书籍。"),
+    "zh-cn": [
+        ("zh-cn-YunxiNeural", "云希 【男】", "活泼、阳光的声音，具有丰富的情感，可用于许多对话场景。"),
+        ("zh-cn-YunyeNeural", "云野 【男】", "成熟、放松的声音，具有多种情感，适合音频书籍。"),
+        ("zh-cn-YunyangNeural", "云扬 【男】", "专业、流利的声音，具有多种场景风格。"),
+        ("zh-cn-XiaoxiaoNeural", "晓晓 【女】", "活泼、温暖的声音，具有多种场景风格和情感。"),
+        ("zh-cn-XiaoyouNeural", "晓悠 【女】", "天使般的清晰声音，可以应用于许多儿童相关场景。"),
+        ("zh-cn-XiaomoNeural", "晓墨 【女】", "清晰、放松的声音，具有丰富的角色扮演和情感，适合音频书籍。"),
     ],
-    "fr-FR": [
-        ("fr-FR-HenriNeural", "Henri 【mâle】", ""),
-        ("fr-FR-ClaudeNeural", "Claude 【mâle】", ""),
-        ("fr-FR-CelesteNeural", "Celeste 【femelle】", ""),
-        ("fr-FR-EloiseNeural", "Eloise 【femelle】", ""),
+    "fr-fr": [
+        ("fr-fr-HenriNeural", "Henri 【mâle】", ""),
+        ("fr-fr-ClaudeNeural", "Claude 【mâle】", ""),
+        ("fr-fr-CelesteNeural", "Celeste 【femelle】", ""),
+        ("fr-fr-EloiseNeural", "Eloise 【femelle】", ""),
     ],
 }
 
@@ -86,7 +86,7 @@ class Locale:
 
 
 zh_cn = Locale(
-    language_key="zh-CN",
+    language_key="zh-cn",
     language_label="简体中文",
     language_level=["初级", "中级", "高级"],
     app_introduce="""**沉浸式口语练习应用程序**""",
@@ -141,7 +141,7 @@ zh_cn = Locale(
 )
 
 en_us = Locale(
-    language_key="en-US",
+    language_key="en-us",
     language_label="English",
     language_level=["Elementary", "Intermediate", "Advanced"],
     app_introduce="""**The Immersive Spoken Language Practice App**""",
@@ -215,7 +215,7 @@ en_us = Locale(
 )
 
 ja_jp = Locale(
-    language_key="ja-JP",
+    language_key="ja-jp",
     language_label="日本語",
     language_level=["初級", "中級", "上級"],
     app_introduce="""**没入型の話し言葉練習アプリ**""",
@@ -267,7 +267,7 @@ ja_jp = Locale(
 )
 
 fr_fr = Locale(
-    language_key="fr-FR",
+    language_key="fr-fr",
     language_label="Français",
     language_level=["Élémentaire", "Intermédiaire", "Avancé"],
     app_introduce="""**L'application immersive de pratique de la langue parlée**""",
@@ -341,15 +341,15 @@ fr_fr = Locale(
 )
 
 LAN_MAPS = {
-    "zh-CN": zh_cn,
-    "en-US": en_us,
-    "ja-JP": ja_jp,
-    "fr-FR": fr_fr,
+    "zh-cn": zh_cn,
+    "en-us": en_us,
+    "ja-jp": ja_jp,
+    "fr-fr": fr_fr,
 }
 
 
 WORDS_N = {
-    "zh-CN": {
+    "zh-cn": {
         "basic": [
             "她",
             "千",
@@ -5351,7 +5351,7 @@ WORDS_N = {
             "回顾",
         ],
     },
-    "en-US": {
+    "en-us": {
         "basic": [
             "lend",
             "relax",

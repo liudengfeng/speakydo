@@ -1,4 +1,5 @@
 requests
+gTTS
 python-dotenv
 pymongo
 bs4
